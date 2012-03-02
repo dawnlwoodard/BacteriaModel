@@ -29,10 +29,10 @@ int main()
 		printf("k:  ");
 		scanf("%lf", &k);
 
-		sprintf(command, "f(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r);
+		sprintf(command, "P(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r); plot->write( command );
+		sprintf(command, "k(x) = %f", k); plot->write( command );
 		plot->set_yrange(0,k+P0);
-		plot->write( command );
-		plot->write( "plot f(x)" );
+		plot->write( "plot f(x) lt 1, k(x) lt 3" );
 
 	}
 
