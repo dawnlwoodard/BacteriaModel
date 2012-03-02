@@ -13,16 +13,28 @@ int main()
 
 	double P, P0, r, k;
 
-	P0 = 1000;
-	r = 0.3;
-	k = 20000;
-
 	//P = (k*P0*exp(r*t)) / (k + P0*(exp(r*t)-1));
 
 	char command[128];
-	sprintf(command, "f(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r);
-	plot->write( command );
-	plot->write( "plot f(x)" );
+
+	while (true)
+	{
+
+		printf("P0: ");
+		scanf("%lf", &P0);
+
+		printf("r:  ");
+		scanf("%lf", &r);
+
+		printf("k:  ");
+		scanf("%lf", &k);
+
+		sprintf(command, "f(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r);
+		plot->set_yrange(0,k+P0);
+		plot->write( command );
+		plot->write( "plot f(x)" );
+
+	}
 
 	delete(plot);
 

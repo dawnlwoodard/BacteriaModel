@@ -20,11 +20,9 @@ Plot::Plot()
 	//write("set term postscript eps color");
 	write("set title \"Bacteria Population Over Time\"");
 	write("set xlabel \"Time\"");
-	write("set xrange[0:]");
 	write("set ylabel \"Population\"");
-	write("set yrange[0:]");
-	write("f(x) = exp(x)");
-	write("plot f(x)");
+	set_xrange(0,100);
+	set_yrange(0,100);
 
 }
 
@@ -34,6 +32,24 @@ Plot::~Plot()
 	write("set terminal x11 close 0");
 	write("exit");
 	pclose(gnuplot);
+
+}
+
+void Plot::set_xrange( double min, double max )
+{
+
+	char command[128];
+	sprintf(command, "set xrange[%f:%f]",min,max);
+	write( command );
+
+}
+
+void Plot::set_yrange( double min, double max )
+{
+
+	char command[128];
+	sprintf(command, "set yrange[%f:%f]",min,max);
+	write( command );
 
 }
 
