@@ -21,6 +21,7 @@ Plot::Plot()
 	write("set title \"Bacteria Population Over Time\"");
 	write("set xlabel \"Time\"");
 	write("set ylabel \"Population\"");
+	write("set key bottom");
 	set_xrange(0,100);
 	set_yrange(0,100);
 

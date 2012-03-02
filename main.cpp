@@ -31,8 +31,8 @@ int main()
 
 		sprintf(command, "P(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r); plot->write( command );
 		sprintf(command, "k(x) = %f", k); plot->write( command );
-		plot->set_yrange(0,k+P0);
-		plot->write( "plot f(x) lt 1, k(x) lt 3" );
+		plot->set_yrange(0,1.05*k);
+		plot->write( "plot P(x) lt 1, k(x) lt 3" );
 
 	}
 
