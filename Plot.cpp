@@ -16,7 +16,7 @@ Plot* Plot::CreateInstance()
 Plot::Plot()
 {
 
-	gnuplot = popen("gnuplot -geometry 800x800 - > /dev/null 2>&1","w");
+	gnuplot = popen("gnuplot -persist > /dev/null 2>&1","w");
 	//write("set term postscript eps color");
 	write("set title \"Bacteria Population Over Time\"");
 	write("set xlabel \"Time\"");
