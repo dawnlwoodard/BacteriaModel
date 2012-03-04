@@ -1,9 +1,10 @@
 CXX=g++
 CXXFLAGS=-g -lm
 PROJECT=BacteriaModel
+OBJECTS=main.o Plot.o Bacteria.o Bacterium.o
 
-all: main.o Plot.o Bacteria.o
-	$(CXX) $(CXXFLAGS) main.o Plot.o Bacteria.o -o $(PROJECT)
+all: $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(PROJECT)
 
 main.o: main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
@@ -13,6 +14,9 @@ Plot.o: Plot.cpp
 
 Bacteria.o: Bacteria.cpp
 	$(CXX) $(CXXFLAGS) -c Bacteria.cpp -o Bacteria.o
+
+Bacterium.o: Bacterium.cpp
+	$(CXX) $(CXXFLAGS) -c Bacterium.cpp -o Bacterium.o
 
 clean:
 	rm *.o $(PROJECT)
