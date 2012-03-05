@@ -10,7 +10,7 @@ class Bacterium
 	public:
 		Bacterium();
 		~Bacterium();
-
+		void divide();
 };
 
 #endif

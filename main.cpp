@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "Plot.h"
+#include "Bacteria.h"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ int main()
 	//P = (k*P0*exp(r*t)) / (k + P0*(exp(r*t)-1));
 
 	char command[128];
+
+	Bacteria* bacteria = new Bacteria();
 
 	while (true)
 	{
