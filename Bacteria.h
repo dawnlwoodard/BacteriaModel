@@ -2,7 +2,7 @@
 #define BACTERIA_H
 
 #include "Bacterium.h"
-#include <vector>
+#include <deque>
 #include <stdio.h>
 
 using namespace std;
@@ -10,11 +10,13 @@ using namespace std;
 class Bacteria
 {
 	private:
-		vector<Bacterium*> bacteria;
+		deque<Bacterium*> bacteria;
 
 	public:
 		Bacteria();
 		~Bacteria();
+		int get_number();
+		bool remove( int index );
 
 };
 
