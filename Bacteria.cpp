@@ -15,7 +15,6 @@ Bacteria::Bacteria()
 	bacteria.push_back( new Bacterium() );
 	bacteria.push_back( new Bacterium() );
 	bacteria.push_back( new Bacterium() );
-	bacteria.erase( 4 );
 	printf("Number of bacteria: %d\n", bacteria.size());
 
 }
