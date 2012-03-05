@@ -9,6 +9,7 @@ using namespace std;
 
 class Lineage
 {
+
 	private:
 		deque<Bacterium*> lineage;
 
@@ -18,4 +19,4 @@ class Lineage
 
 };
 
-endif
+#endif

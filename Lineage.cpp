@@ -6,6 +6,7 @@ using namespace std;
 Lineage::Lineage()
 {
 
+	/*lineage.push_back( new Bacterium() );
 	lineage.push_back( new Bacterium() );
 	lineage.push_back( new Bacterium() );
 	lineage.push_back( new Bacterium() );
@@ -15,8 +16,7 @@ Lineage::Lineage()
 	lineage.push_back( new Bacterium() );
 	lineage.push_back( new Bacterium() );
 	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	printf("Number of lineage: %d\n", (int)lineage.size());
+	printf("Number of lineage: %d\n", (int)lineage.size());*/
 
 }
 
