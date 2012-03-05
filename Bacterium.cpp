@@ -12,7 +12,3 @@ Bacterium::~Bacterium()
 
 }
 
-void Bacterium::divide()
-{
-  
-}

@@ -18,7 +18,7 @@ int main()
 
 	char command[128];
 
-	Bacteria* bacteria = new Bacteria();
+	Bacteria* bacteria = new Bacteria( 5 );
 
 	while (true)
 	{
