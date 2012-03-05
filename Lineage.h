@@ -14,9 +14,11 @@ class Lineage
 		deque<Bacterium*> lineage;
 
 	public:
-		Lineage();
+		Lineage(int generations);
 		~Lineage();
-
+		bool divide(int index);
+		bool die(int index);
+		int get_size();
 };
 
 #endif

@@ -1,33 +1,16 @@
 #include "Bacteria.h"
 #include "Lineage.h" 
+#include <iostream>
+
 
 using namespace std;
 
-Bacteria::Bacteria()
+Bacteria::Bacteria( int pop0 )
 {
-
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	bacteria.push_back( new Lineage() );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-	printf("Number of lineages: %d\n", get_number()); remove( 0 );
-
+	for (int i = 0; i < pop0; i++)
+		bacteria.push_back( new Lineage(5) );
+	printf("Number of lineages: %d\n", get_number());
+	printf("Population size: %d\n", get_pop());
 }
 
 Bacteria::~Bacteria()
@@ -37,9 +20,17 @@ Bacteria::~Bacteria()
 
 int Bacteria::get_number()
 {
-
 	return (int)bacteria.size();
+}
 
+int Bacteria::get_pop()
+{
+	int pop = 0;
+	for (int i=0;i<bacteria.size();i++)
+	{
+		pop += bacteria[i]->get_size();	
+	}
+	return pop;
 }
 
 bool Bacteria::remove( int index )
