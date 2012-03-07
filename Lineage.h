@@ -16,7 +16,7 @@ class Lineage
 	public:
 		Lineage(int generations);
 		~Lineage();
-		bool divide(int index);
+		bool divide();
 		bool die(int index);
 		int get_size();
 };

@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-g -lm
+CXXFLAGS=-g -lm -Wall
 PROJECT=BacteriaModel
 OBJECTS=main.o Plot.o Bacteria.o Lineage.o Bacterium.o
 

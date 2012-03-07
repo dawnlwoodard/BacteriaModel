@@ -18,9 +18,9 @@ int main()
 
 	char command[128];
 
-	Bacteria* bacteria = new Bacteria( 5 );
+	Bacteria* bacteria = new Bacteria( 2, 4 );
 
-	while (true)
+	/*while (true)
 	{
 
 		printf("P0: ");
@@ -39,7 +39,7 @@ int main()
 
 	}
 
-	delete(plot);
+	delete(plot);*/
 
 	return 0;
 

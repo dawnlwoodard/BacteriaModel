@@ -13,7 +13,7 @@ class Bacteria
 		deque<Lineage*> bacteria;
 
 	public:
-		Bacteria( int pop0 );
+		Bacteria( int pop0, int generations );
 		~Bacteria();
 		int get_number();
 		bool remove( int index );

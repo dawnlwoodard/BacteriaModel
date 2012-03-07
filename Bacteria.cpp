@@ -5,12 +5,15 @@
 
 using namespace std;
 
-Bacteria::Bacteria( int pop0 )
+Bacteria::Bacteria( int pop0, int generations )
 {
 	for (int i = 0; i < pop0; i++)
-		bacteria.push_back( new Lineage(5) );
-	printf("Number of lineages: %d\n", get_number());
-	printf("Population size: %d\n", get_pop());
+		bacteria.push_back( new Lineage(generations) );
+
+	
+	for (int i = 0; i<generations-1; i++)
+		for (int j = 0; j < bacteria.size(); j++)
+			bacteria[j]->divide();
 }
 
 Bacteria::~Bacteria()

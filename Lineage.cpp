@@ -8,21 +8,11 @@ Lineage::Lineage(int generations)
 	int pop0 = 1;
 	for (int i = 0; i<pop0; i++)
 		lineage.push_back(new Bacterium());
+
+/*for (int i = 0; i<generations; i++)
+	for (int j=0; j<lineage.size(); j++)
+		lineage.divide(j);*/
 	
-/*	for (int i = 0; i<generations; i++)
-		lineage.divide((int) lineage.size());*/
-	
-	/*lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	lineage.push_back( new Bacterium() );
-	printf("Number of lineage: %d\n", (int)lineage.size());*/
 	printf("Number of lineages: %d\n", (int)lineage.size());
 }
 
@@ -31,10 +21,10 @@ Lineage::~Lineage()
 
 }
 
-bool Lineage::divide(int index)
+bool Lineage::divide()
 {
 	
-	if ( index < lineage.size() )
+	/*if ( index < lineage.size() )
 	{
 		lineage.insert(lineage.begin() + index, new Bacterium());
 		return true;
@@ -46,7 +36,12 @@ bool Lineage::divide(int index)
 		fprintf(stderr, "Invalid index (%d)!\n", index);
 		return false;
 
-	}
+	}*/
+	int size = lineage.size();
+	for (int i=0; i < size; i++)
+		lineage.insert(lineage.end(), new Bacterium());
+	 
+	return true;
 }
 
 bool Lineage::die(int index)
