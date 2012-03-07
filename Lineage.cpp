@@ -8,12 +8,6 @@ Lineage::Lineage(int generations)
 	int pop0 = 1;
 	for (int i = 0; i<pop0; i++)
 		lineage.push_back(new Bacterium());
-
-/*for (int i = 0; i<generations; i++)
-	for (int j=0; j<lineage.size(); j++)
-		lineage.divide(j);*/
-	
-	printf("Number of lineages: %d\n", (int)lineage.size());
 }
 
 Lineage::~Lineage()
