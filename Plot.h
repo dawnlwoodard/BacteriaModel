@@ -13,7 +13,7 @@ class Plot
 	private:
 		Plot();
         Plot(Plot const&){};
-        Plot& operator=(Plot const&){};
+        void operator=(Plot const&){};
         static Plot* pInstance;
 		FILE* gnuplot;
 

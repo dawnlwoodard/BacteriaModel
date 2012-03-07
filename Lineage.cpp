@@ -40,7 +40,7 @@ bool Lineage::divide()
 
 bool Lineage::die(int index)
 {
-	if ( index < lineage.size() )
+	if ( index < (int)lineage.size() )
 	{
 
 		lineage.erase( lineage.begin() + index );

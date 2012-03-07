@@ -7,12 +7,12 @@ using namespace std;
 
 Bacteria::Bacteria( int pop0, int generations )
 {
-	for (int i = 0; i < pop0; i++)
+	for (int i = 0; i < (int)pop0; i++)
 		bacteria.push_back( new Lineage(generations) );
 
 	
-	for (int i = 0; i<generations-1; i++)
-		for (int j = 0; j < bacteria.size(); j++)
+	for (int i = 0; i < (int)generations-1; i++)
+		for (int j = 0; j < (int)bacteria.size(); j++)
 			bacteria[j]->divide();
 	printf("Number of lineages: %d\n", get_number());
 	printf("Population size: %d\n", get_pop());
@@ -31,7 +31,7 @@ int Bacteria::get_number()
 int Bacteria::get_pop()
 {
 	int pop = 0;
-	for (int i=0;i<bacteria.size();i++)
+	for (int i=0;i < (int)bacteria.size();i++)
 	{
 		pop += bacteria[i]->get_size();	
 	}
@@ -41,7 +41,7 @@ int Bacteria::get_pop()
 bool Bacteria::remove( int index )
 {
 
-	if ( index < bacteria.size() )
+	if ( index < (int)bacteria.size() )
 	{
 
 		bacteria.erase( bacteria.begin() + index );
