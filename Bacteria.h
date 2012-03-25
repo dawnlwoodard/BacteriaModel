@@ -16,7 +16,7 @@ class Bacteria
 		Bacteria( int pop0, int generations, int k );
 		~Bacteria();
 		int get_number();
-		bool remove( int lin );
+		bool remove( int lin, int death_prob );
 		int get_pop();
 		void random();
 		int get_death_prob(); 

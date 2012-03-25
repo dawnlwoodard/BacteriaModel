@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Bacteria::Bacteria( int pop0, int generations, int k)
+Bacteria::Bacteria( int pop0, int generations, int k )
 {
 	this->k = k;
 
@@ -48,13 +48,13 @@ int Bacteria::get_death_prob()
     return prob;
 }
 
-bool Bacteria::remove( int lin )
+bool Bacteria::remove( int lin, int death_prob )
 {
 
 	if ( lin < (int)bacteria.size() )
 	{
 
-		bacteria[lin]->random();
+		bacteria[lin]->random(death_prob);
 		return true;
 
 	}
@@ -71,9 +71,11 @@ bool Bacteria::remove( int lin )
 void Bacteria::random()
 {
 	printf("Removing within %d lineages\n", this->get_number());
+	int death_prob = this->get_death_prob();
+
 	for (int i = 0; i < this->get_number(); i++)
 	{
 		printf("removing within lineage %d\n", i); 
-		this->remove(i);
+		this->remove(i, death_prob);
 	}
 }
