@@ -33,10 +33,8 @@ int main()
 	printf("Carrying capacity: ");
 	scanf("%d", &k);	
 
-	for (int i=0; i<maxGen;i++)
-	{
-		plotBac.push_back(new Bacteria(P0, maxGen, k));
-	}
+	for ( int i = 0; i <= maxGen ; i++ )
+		plotBac.push_back( new Bacteria(P0, maxGen, k) );
 
 	int max = 0;
 	for ( int i = 0; i < (int)plotBac.size(); i++ )
@@ -49,7 +47,7 @@ int main()
 
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,max);
-	plot->write("plot '-' with points");
+	plot->write("plot '-' with lp pt 7");
 	for (int i = 0; i <= maxGen; i++)
 	{	
 		int size = plotBac[i]->get_pop();
