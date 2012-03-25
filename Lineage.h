@@ -2,6 +2,7 @@
 #define LINEAGE_H
 
 #include "Bacterium.h"
+#include "globals.h"
 #include <deque>
 #include <stdio.h>
 

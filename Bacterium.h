@@ -1,6 +1,8 @@
 #ifndef BACTERIUM_H
 #define BACTERIUM_H
 
+#include "globals.h"
+
 using namespace std;
 
 class Bacterium

@@ -4,12 +4,15 @@
 #include <time.h>
 #include "Plot.h"
 #include "Bacteria.h"
+#include "globals.h"
 
 using namespace std;
 
 Plot* plot = Plot::CreateInstance();
 const double pi = 3.141592653589793;
 deque<Bacteria*> plotBac;  
+
+bool debug = false;
 
 void quit( int sig );
 

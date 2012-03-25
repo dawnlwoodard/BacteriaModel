@@ -1,7 +1,6 @@
-#ifndef BACTERIA_H
-#define BACTERIA_H
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
-bool debug = false;
+extern bool debug;
 
 #endif
-
