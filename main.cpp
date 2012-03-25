@@ -39,8 +39,7 @@ int main()
 	}
 
 	int max = 0;
-
-	for ( int i = 0; i < plotBac.size(); i++ )
+	for ( int i = 0; i < (int)plotBac.size(); i++ )
 	{
 
 		int pop = plotBac[i]->get_pop();
