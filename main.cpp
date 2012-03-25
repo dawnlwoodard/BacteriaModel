@@ -38,7 +38,16 @@ int main()
 		plotBac.push_back(new Bacteria(P0, maxGen, k));
 	}
 
-	int max = plotBac[plotBac.size()-1]->get_pop();	
+	int max = 0;
+
+	for ( int i = 0; i < plotBac.size(); i++ )
+	{
+
+		int pop = plotBac[i]->get_pop();
+		if ( pop > max ) max = pop;
+
+	}
+
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,max);
 	plot->write("plot '-' with points");
