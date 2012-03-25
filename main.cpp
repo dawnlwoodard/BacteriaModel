@@ -50,7 +50,7 @@ int main()
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,max);
 	plot->write("plot '-' with points");
-	for (int i = 0; i < maxGen; i++)
+	for (int i = 0; i <= maxGen; i++)
 	{	
 		int size = plotBac[i]->get_pop();
 		sprintf(command, "%d %d",i, size); plot->write( command );
