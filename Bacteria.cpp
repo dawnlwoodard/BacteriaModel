@@ -1,12 +1,15 @@
 #include "Bacteria.h"
-#include "Lineage.h" 
+#include "Lineage.h"
+#include <stdio.h>
+#include <stdlib.h> 
 #include <iostream>
-
 
 using namespace std;
 
-Bacteria::Bacteria( int pop0, int generations )
+Bacteria::Bacteria( int pop0, int generations, int k)
 {
+	this->k = k;
+
 	for (int i = 0; i < (int)pop0; i++)
 		bacteria.push_back( new Lineage(generations) );
 
@@ -14,6 +17,7 @@ Bacteria::Bacteria( int pop0, int generations )
 	for (int i = 0; i < (int)generations-1; i++)
 		for (int j = 0; j < (int)bacteria.size(); j++)
 			bacteria[j]->divide();
+	this->random();
 	printf("Number of lineages: %d\n", get_number());
 	printf("Population size: %d\n", get_pop());
 }
@@ -38,22 +42,38 @@ int Bacteria::get_pop()
 	return pop;
 }
 
-bool Bacteria::remove( int index )
+int Bacteria::get_death_prob()
+{
+	int prob = 2*this->get_pop()*(1-this->get_pop()/k);
+    return prob;
+}
+
+bool Bacteria::remove( int lin )
 {
 
-	if ( index < (int)bacteria.size() )
+	if ( lin < (int)bacteria.size() )
 	{
 
-		bacteria.erase( bacteria.begin() + index );
+		bacteria[lin]->random();
 		return true;
 
 	}
 	else
 	{
 
-		fprintf(stderr, "Invalid bacteria index (%d)!\n", index);
+		fprintf(stderr, "Invalid bacteria index (%d)!\n", lin);
 		return false;
 
 	}
 
+}
+
+void Bacteria::random()
+{
+	printf("Removing within %d lineages\n", this->get_number());
+	for (int i = 0; i < this->get_number(); i++)
+	{
+		printf("removing within lineage %d\n", i); 
+		this->remove(i);
+	}
 }

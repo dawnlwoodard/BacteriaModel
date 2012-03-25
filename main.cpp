@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <time.h>
 #include "Plot.h"
 #include "Bacteria.h"
 
@@ -6,41 +9,56 @@ using namespace std;
 
 Plot* plot = Plot::CreateInstance();
 const double pi = 3.141592653589793;
+deque<Bacteria*> plotBac;  
+
+void quit( int sig );
 
 int main()
 {
 
-	char buffer[16];
+	int maxGen;	
+	double P0;
+	int k;
 
-	double P, P0, r, k;
-
-	//P = (k*P0*exp(r*t)) / (k + P0*(exp(r*t)-1));
+	srand( (unsigned)time(NULL) );
 
 	char command[128];
 
-	Bacteria* bacteria = new Bacteria( 2, 4 );
+	printf("P0: ");
+	scanf("%lf", &P0);
+		
+	printf("Number of generations: ");
+	scanf("%d", &maxGen);	
 
-	/*while (true)
+	printf("Carrying capacity: ");
+	scanf("%d", &k);	
+
+	for (int i=0; i<maxGen;i++)
 	{
-
-		printf("P0: ");
-		scanf("%lf", &P0);
-
-		printf("r:  ");
-		scanf("%lf", &r);
-
-		printf("k:  ");
-		scanf("%lf", &k);
-
-		sprintf(command, "P(x) = (%f*%f*exp(%f*x)) / (%f + %f*(exp(%f*x)-1))", k,P0,r,k,P0,r); plot->write( command );
-		sprintf(command, "k(x) = %f", k); plot->write( command );
-		plot->set_yrange(0,1.05*k);
-		plot->write( "plot P(x) lt 1, k(x) lt 3" );
-
+		plotBac.push_back(new Bacteria(P0, maxGen, k));
 	}
 
-	delete(plot);*/
+	int max = plotBac[plotBac.size()-1]->get_pop();	
+	plot->set_xrange(0,maxGen);
+	plot->set_yrange(0,max);
+	plot->write("plot '-' with points");
+	for (int i = 0; i < maxGen; i++)
+	{	
+		int size = plotBac[i]->get_pop();
+		sprintf(command, "%d %d",i, size); plot->write( command );
+	}
+	plot->write("e");
+	
+	while (true) signal(2, &quit);
 
 	return 0;
+
+}
+
+void quit( int sig )
+{
+
+	delete plot;
+	exit(0);
 
 }

@@ -6,10 +6,11 @@ using namespace std;
 class Bacterium
 {
 	private:
-
+		int resistance;
 	public:
-		Bacterium();
+		Bacterium(int resistance);
 		~Bacterium();
+		int get_resistance();
 };
 
 #endif
