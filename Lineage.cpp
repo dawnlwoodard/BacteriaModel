@@ -1,5 +1,6 @@
 #include "Lineage.h"
 #include "Bacterium.h"
+#include "globals.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -47,7 +48,7 @@ bool Lineage::die(int index)
 	{
 
 		lineage.erase( lineage.begin() + index );
-		printf("Bacterium %d died\n", index);
+		if ( debug ) printf("Bacterium %d died\n", index);
 		return true;
 
 	}
