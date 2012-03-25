@@ -9,16 +9,16 @@ all: $(OBJECTS)
 main.o: main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
 
-Plot.o: Plot.cpp
+Plot.o: Plot.cpp Plot.h
 	$(CXX) $(CXXFLAGS) -c Plot.cpp -o Plot.o
 
-Bacteria.o: Bacteria.cpp
+Bacteria.o: Bacteria.cpp Bacteria.h
 	$(CXX) $(CXXFLAGS) -c Bacteria.cpp -o Bacteria.o
 
-Lineage.o: Lineage.cpp
+Lineage.o: Lineage.cpp Lineage.h
 	$(CXX) $(CXXFLAGS) -c Lineage.cpp -o Lineage.o
 
-Bacterium.o: Bacterium.cpp
+Bacterium.o: Bacterium.cpp Bacterium.h
 	$(CXX) $(CXXFLAGS) -c Bacterium.cpp -o Bacterium.o
 
 clean:

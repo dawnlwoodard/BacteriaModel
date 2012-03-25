@@ -24,7 +24,7 @@ int main()
 
 	char command[128];
 
-	printf("P0: ");
+	printf("Initial Population: ");
 	scanf("%lf", &P0);
 		
 	printf("Number of generations: ");
@@ -34,7 +34,7 @@ int main()
 	scanf("%d", &k);	
 
 	for ( int i = 0; i <= maxGen ; i++ )
-		plotBac.push_back( new Bacteria(P0, maxGen, k) );
+		plotBac.push_back( new Bacteria(P0, i, k) );
 
 	int max = 0;
 	for ( int i = 0; i < (int)plotBac.size(); i++ )
