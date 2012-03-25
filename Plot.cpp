@@ -19,7 +19,7 @@ Plot::Plot()
 	gnuplot = popen("gnuplot -persist > /dev/null 2>&1","w");
 	//write("set term postscript eps color");
 	write("set title \"Bacteria Population Over Time\"");
-	write("set xlabel \"Time\"");
+	write("set xlabel \"Generations\"");
 	write("set ylabel \"Population\"");
 	write("set key bottom");
 	set_xrange(0,100);
