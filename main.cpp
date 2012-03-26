@@ -23,7 +23,7 @@ int main()
 
 	int maxGen = 10;	
 	int pop0 = 10;
-	int k = 2000;
+	int k = 1000;
 	double r = 1.0;
 
 	srand( (unsigned)time(NULL) );
