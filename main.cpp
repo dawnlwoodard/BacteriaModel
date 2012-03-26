@@ -45,7 +45,9 @@ int main()
 
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,max);
-	plot->write("plot '-' with lp pt 7");
+
+	
+	sprintf(command, "plot %d, '-' with lp pt 7", k); plot->write(command);
 	for (int i = 0; i <= maxGen; i++)
 	{	
 		int size = plotBac[i]->get_pop();
