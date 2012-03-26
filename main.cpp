@@ -19,7 +19,7 @@ int main( int argc, char* argv[] )
 {
 
 	unsigned int pop0 = 10;
-	unsigned int gens = 10;
+	unsigned int gens = 25;
 	unsigned int cap  = 500;
 	double rate = 1.0;
 	char command[128];

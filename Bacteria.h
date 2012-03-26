@@ -12,15 +12,16 @@ using namespace std;
 
 class Bacteria
 {
+
 	private:
 		Plot* plot;
 		deque<Lineage*> bacteria;
 		vector<int> pops;
 		unsigned int generations;
-		unsigned int k;
+		unsigned int cap;
 
 	public:
-		Bacteria( unsigned int pop0, unsigned int generations, unsigned int k );
+		Bacteria( unsigned int pop0, unsigned int generations, unsigned int cap );
 		~Bacteria();
 		int get_number();
 		void get_pop_vector( vector<int> &pops );
@@ -29,7 +30,6 @@ class Bacteria
 		void initialize(int pop0);
 		void generate();
 		void new_generation(int gen);
-		int get_death_prob(); 
 
 };
 #endif

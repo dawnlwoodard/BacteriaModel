@@ -7,12 +7,12 @@
 
 using namespace std;
 
-Bacteria::Bacteria( unsigned int pop0, unsigned int generations, unsigned int k )
+Bacteria::Bacteria( unsigned int pop0, unsigned int generations, unsigned int cap )
 {
 
 	this->plot = Plot::CreateInstance();
 
-	this->k = k;
+	this->cap = cap;
 	this->generations = generations;
 	
 	this->initialize( pop0 );
@@ -102,20 +102,12 @@ int Bacteria::get_pop()
 
 }
 
-//return death probability
-int Bacteria::get_death_prob()
-{
-
-	return this->get_pop()/k;
-
-}
-
 //calls remove on deque bacteria 
 void Bacteria::remove()
 {
 
 	if ( debug ) printf("Removing within %d lineages\n", this->get_number());
-	int death_prob = this->get_death_prob();
+	double death_prob = (double)this->get_pop()/(double)this->cap;
 
 	//Tell every lineage to randomly erase bacteria
 	for (int i = 0; i < this->get_number(); i++)
