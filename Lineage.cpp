@@ -93,7 +93,7 @@ bool Lineage::die(int index)
 
 } 
 
-void Lineage::random(int death_prob)
+void Lineage::random(double death_prob)
 {
 	int randNum = (rand() % (this->get_size()+1));
 	if ( debug ) printf("removing %d bacteria from lineage\n",randNum);

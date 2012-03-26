@@ -21,7 +21,7 @@ class Lineage
 		bool divide();
 		bool die(int index);
 		int get_size();
-		void random(int death_prob);
+		void random(double death_prob);
 };
 
 #endif
