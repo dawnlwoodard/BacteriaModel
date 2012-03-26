@@ -11,7 +11,7 @@ Lineage::Lineage(int generations)
 	int resistance = rand() % 1;
 	int pop0 = 1;
 	for (int i = 0; i<pop0; i++)
-		lineage.push_back(new Bacterium(resistance));
+		lineage.push_back(new Bacterium(resistance, 0));
 }
 
 Lineage::~Lineage()
@@ -37,8 +37,10 @@ bool Lineage::divide()
 	}*/
 	int size = lineage.size();
 	for (int i=0; i < size; i++)
-		lineage.insert(lineage.end(), new Bacterium(lineage[size-1]->get_resistance() + 0.01));
-	 
+	{
+		deque<Bacterium
+		lineage.insert(i+1, new Bacterium(lineage[size-1]->get_resistance() + 0.01,lineage[i]));
+	}
 	return true;
 }
 
@@ -65,7 +67,7 @@ bool Lineage::die(int index)
 void Lineage::random(int death_prob)
 {
 	int randNum = rand() % this->get_size();
-	if ( debug ) printf("removing %d bacteria from lineage\n",randNum);
+	printf("removing %d bacteria from lineage\n",randNum);
 	for (int i=0; i<randNum; i++)
 	{
 		int randBac = rand() % this->get_size();
