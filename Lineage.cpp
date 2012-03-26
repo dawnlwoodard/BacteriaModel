@@ -38,9 +38,12 @@ bool Lineage::divide()
 	int size = lineage.size();
 	for (int i=0; i < size; i++)
 	{
-		deque<Bacterium
-		lineage.insert(i+1, new Bacterium(lineage[size-1]->get_resistance() + 0.01,lineage[i]));
+	//	deque<Bacterium*> temp;
+	//	temp.insert(i, new Bacterium(lineage[i]->get_resistance() + 0.01,i));
+		lineage.insert(lineage.end(), new Bacterium(lineage[i]->get_resistance() + 0.01,i));
+	
 	}
+	
 	return true;
 }
 
