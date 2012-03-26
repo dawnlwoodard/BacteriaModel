@@ -18,9 +18,9 @@ void quit( int sig );
 int main()
 {
 
-	int pop0 = 10;
-	int gens = 10;
-	int cap  = 500;
+	unsigned int pop0 = 10;
+	unsigned int gens = 10;
+	unsigned int cap  = 500;
 	double rate = 1.0;
 	char command[128];
 
@@ -37,12 +37,12 @@ int main()
 	{
 
 		// Set pop0, gens, and cap to invalid values;
-		pop0 = gens = cap = -1;
+		pop0 = gens = cap = 0;
 
 		// Wait for user to input valid values for pop0, gens, and cap.
-		while ( pop0 < 0 ) { printf("Initial Population:    "); scanf("%d", &pop0); }
-		while ( gens < 0 ) { printf("Number of Generations: "); scanf("%d", &gens); }
-		while ( cap  < 0 ) { printf("Carrying Capacity:     "); scanf("%d", &cap);  }
+		while ( pop0 == 0 ) { printf("Initial Population:    "); scanf("%d", &pop0); }
+		while ( gens == 0 ) { printf("Number of Generations: "); scanf("%d", &gens); }
+		while ( cap  == 0 ) { printf("Carrying Capacity:     "); scanf("%d", &cap);  }
 
 	}
 	else
@@ -63,7 +63,7 @@ int main()
 
 	// Send model data to gnuplot.
 	bacteria->get_pop_vector( pops );
-	for ( int i = 0; i <= gens; i++ )
+	for ( unsigned int i = 0; i <= gens; i++ )
 	{
 
 		sprintf(command, "%d %d", i, pops[i]); plot->write( command );
@@ -73,7 +73,7 @@ int main()
 
 	// Send expected data to gnuplot.
 	pop.resize( gens + 1 );
-	for ( int i = 0; i <= gens; i++ )
+	for ( unsigned int i = 0; i <= gens; i++ )
 	{
 
 		// P(n+1) = P(n) + r*P(n)*(1-P(n)/k)
