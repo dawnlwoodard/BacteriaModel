@@ -10,3 +10,6 @@ add capability to run multiple trials with same inputs and average
 add dormant property to bacterium (separate deque to pop and push these to?)
 
 add probability of dividing for bacterium (currently at 100%)
+
+take age into account using something along the lines of:
+deltaGen = currentGen - bacteria->getGen();
