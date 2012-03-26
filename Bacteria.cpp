@@ -32,7 +32,7 @@ void Bacteria::initialize(int pop0)
 	pops.resize(generations); pops[0] = pop0;
 	for (int i = 0; i < (int)pop0; i++)
 		bacteria.push_back( new Lineage(generations) );
-//	this->random();
+	this->random();
 }
 
 void Bacteria::generate()
@@ -41,7 +41,7 @@ void Bacteria::generate()
 	for (int i = 0; i < (int)generations-1; i++)
 	{
 		new_generation(i);
-	//	this->random();
+		this->random();
 	}
 }
 
@@ -121,7 +121,8 @@ void Bacteria::random()
 	}	
 
 	//Take out lineages that have no more bacterium in them
-	for (int i = 0; i < this->get_number(); i++)
+	int size = bacteria.size();
+	for (int i = 0; i < size; i++)
 	{
 		if ( debug ) printf("Size of lineage %d = %d\n", i, bacteria[i]->get_size());
 		if (bacteria[i]->get_size() == 0)
