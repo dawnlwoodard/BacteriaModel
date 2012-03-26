@@ -66,7 +66,7 @@ int main( int argc, char* argv[] )
 	
 	// Set graphing window based on user input.
 	plot->set_xrange(0, gens);
-	plot->set_yrange(0, 1.05*cap);
+	plot->set_yrange(0, 1.1*cap);
 	
 	// Initialize gnuplot for three simultaneous plots.
 	sprintf(command, "plot %d title '%s', '-' title '%s' with lp pt 7, '-' title '%s' with lp pt 7", cap, "Capacity", "Modeled", "Expected" ); plot->write(command);
