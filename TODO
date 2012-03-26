@@ -1,1 +1,11 @@
 change ints to unsigned long ints so overflow doesn't happen so soon
+
+LOGISTIC GROWTH.
+
+plot spread of resistance values in final population
+
+add capability to run multiple trials with same inputs and average 
+
+add dormant property to bacterium (separate deque to pop and push these to?)
+
+add probability of dividing for bacterium (currently at 100%)
