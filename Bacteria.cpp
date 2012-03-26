@@ -54,7 +54,7 @@ void Bacteria::new_generation(int gen)
 		bacteria[j]->divide();
 
 		pops[gen+1] = get_pop();
-		printf("Population = %d\n", get_pop());
+		if ( debug ) printf("Population = %d\n", get_pop());
 	}			
 
 }

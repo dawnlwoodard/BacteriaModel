@@ -13,8 +13,8 @@ Plot* plot = Plot::CreateInstance();
 const double pi = 3.141592653589793;
 deque<Bacteria*> plotBac;  
 
-bool debug = true;
-bool userInput = true;
+bool debug = false;
+bool userInput = false;
 
 void quit( int sig );
 

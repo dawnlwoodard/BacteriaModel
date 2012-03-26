@@ -60,7 +60,7 @@ bool Lineage::divide()
 	{
 		double random = (double)(rand() % 10000) / (double)1000000 - 0.005;
 		lineage.push_back( new Bacterium(random + lineage[i]->get_resistance(),i) );
-		printf("added bacterium %d to lineage\n", i + 1);	
+		if ( debug ) printf("added bacterium %d to lineage\n", i + 1);	
 	}
 //	temp.clear();
 /*
