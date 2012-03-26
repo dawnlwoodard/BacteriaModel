@@ -1,1 +1,2 @@
 change ints to unsigned long ints so overflow doesn't happen so soon
+for example, run program with pop0=13, gens=14, and cap=1000
