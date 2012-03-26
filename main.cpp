@@ -64,7 +64,7 @@ int main()
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,k+100);
 	
-	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modelled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
+	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modeled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
 
 	vector<int> pops;
 	bacteria->get_pop_vector( pops );
