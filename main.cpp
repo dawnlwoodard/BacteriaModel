@@ -17,21 +17,16 @@ int main()
 {
 
 	int maxGen;	
-	double P0;
+	double pop0;
 	int k;
 
 	srand( (unsigned)time(NULL) );
 
 	char command[128];
 
-	printf("Initial Population: ");
-	scanf("%lf", &P0);
-		
-	printf("Number of generations: ");
-	scanf("%d", &maxGen);	
-
-	printf("Carrying capacity: ");
-	scanf("%d", &k);	
+	printf("Initial Population: ");    scanf("%lf", &pop0);
+	printf("Number of generations: "); scanf("%d",  &maxGen);	
+	printf("Carrying capacity: ");     scanf("%d",  &k);	
 
 	for ( int i = 0; i <= maxGen ; i++ )
 		plotBac.push_back( new Bacteria(P0, i, k) );
