@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
+#include <vector>
 #include "Plot.h"
 #include "Bacteria.h"
 #include "globals.h"
@@ -23,6 +24,7 @@ int main()
 	int maxGen = 10;	
 	int pop0 = 10;
 	int k = 2000;
+	double r = 1.0;
 
 	srand( (unsigned)time(NULL) );
 
@@ -32,16 +34,16 @@ int main()
 	{
 
 		printf("Initial Population:    "); scanf("%d", &pop0);
-		printf("Number of generations: "); scanf("%d", &maxGen);
-		printf("Carrying capacity:     "); scanf("%d", &k);
+		printf("Number of Generations: "); scanf("%d", &maxGen);
+		printf("Carrying Capacity:     "); scanf("%d", &k);
 
 	}
 	else
 	{
 
 		printf("Initial Population:    %d\n", pop0);
-		printf("Number of generations: %d\n", maxGen);
-		printf("Carrying capacity:     %d\n", k);
+		printf("Number of Generations: %d\n", maxGen);
+		printf("Carrying Capacity:     %d\n", k);
 
 	}
 
@@ -58,14 +60,35 @@ int main()
 	}
 
 	plot->set_xrange(0,maxGen);
-	// later ymax should be somewhere slightly above carrying capacity
-	plot->set_yrange(0,max);
+	plot->set_yrange(0,k+100);
 	
-	sprintf(command, "plot %d title \"Capacity\", '-' title \"Bacteria\" with lp pt 7", k); plot->write(command);
-	for (int i = 0; i <= maxGen; i++)
-	{	
+	sprintf(command, "plot %d title \"Capacity\", '-' title \"Predicted\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
+
+	for ( int i = 0; i <= maxGen; i++ )
+	{
+
 		int size = plotBac[i]->get_pop();
-		sprintf(command, "%d %d",i, size); plot->write( command );
+		sprintf(command, "%d %d", i, size); plot->write( command );
+
+	}
+	plot->write("e");
+
+	vector<int> pop;
+	pop.resize( maxGen + 1 );
+	pop[0] = pop0;
+	for ( int i = 1; i <= maxGen; i++ )
+	{
+
+		// P(n+1) = P(n) + r*P(n)*(1-P(n)/k)
+		pop[i] = pop[i-1] + r*pop[i-1]*( 1.0 - pop[i-1]/(double)k );
+
+	}
+	for ( int i = 0; i <= maxGen; i++ )
+	{
+
+		sprintf(command, "%d %d", i, pop[i]);
+		plot->write( command );
+
 	}
 	plot->write("e");
 	
