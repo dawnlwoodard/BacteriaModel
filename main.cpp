@@ -29,7 +29,6 @@ int main()
 
 	// Initialize random seed.
 	srand( (unsigned)time(NULL) );
-
 	
 	if ( userInput )
 	{
@@ -52,13 +51,12 @@ int main()
 
 	}
 
-
 	// Create bacteria object.
 	bacteria = new Bacteria( pop0, gens, cap);
 	
 	// Set graphing window based on user input.
 	plot->set_xrange(0, gens);
-	plot->set_yrange(0, cap+100);
+	plot->set_yrange(0, 1.05*cap);
 	
 	// Initialize gnuplot for three simultaneous plots.
 	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modeled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", cap ); plot->write(command);
