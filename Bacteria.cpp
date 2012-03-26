@@ -126,7 +126,7 @@ void Bacteria::random()
 		if ( debug ) printf("Size of lineage %d = %d\n", i, bacteria[i]->get_size());
 		if (bacteria[i]->get_size() == 0)
 			bacteria.erase(bacteria.begin() + i);
-		if ( debug ) printf("Number of lineages = %d\n", bacteria.size());
+		if ( debug ) printf("Number of lineages = %d\n", (int)bacteria.size());
 	}
 
 }
