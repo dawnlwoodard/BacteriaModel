@@ -11,6 +11,8 @@ Lineage::Lineage(int generations)
 	double resistance = (double)(rand() % 10000)/(double)10000; 
 	this->initialize();
 
+	if ( debug ) printf("resistance: %f\n", resistance);
+
 	/*int pop0 = 1;
 	for (int i = 0; i<pop0; i++)
 		lineage.push_back(new Bacterium(resistance, 0));
