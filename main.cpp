@@ -69,7 +69,7 @@ int main( int argc, char* argv[] )
 	plot->set_yrange(0, 1.05*cap);
 	
 	// Initialize gnuplot for three simultaneous plots.
-	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modeled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", cap ); plot->write(command);
+	sprintf(command, "plot %d title '%s', '-' title '%s' with lp pt 7, '-' title '%s' with lp pt 7", cap, "Capacity", "Modeled", "Expected" ); plot->write(command);
 
 	// Send model data to gnuplot.
 	bacteria->get_pop_vector( pops );
