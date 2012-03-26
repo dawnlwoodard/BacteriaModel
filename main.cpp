@@ -58,10 +58,10 @@ int main()
 	}
 
 	plot->set_xrange(0,maxGen);
+	// later ymax should be somewhere slightly above carrying capacity
 	plot->set_yrange(0,max);
-
 	
-	sprintf(command, "plot %d, '-' with lp pt 7", k); plot->write(command);
+	sprintf(command, "plot %d title \"Capacity\", '-' title \"Bacteria\" with lp pt 7", k); plot->write(command);
 	for (int i = 0; i <= maxGen; i++)
 	{	
 		int size = plotBac[i]->get_pop();

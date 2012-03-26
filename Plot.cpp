@@ -22,7 +22,7 @@ Plot::Plot()
 	write("set xlabel \"Generations\"");
 	write("set ylabel \"Population\"");
 	write("set pointsize 0.75");
-	write("set key off");
+	write("set key bottom");
 
 }
 
