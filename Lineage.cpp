@@ -8,15 +8,23 @@ using namespace std;
 
 Lineage::Lineage(int generations)
 {
-	int resistance = rand() % 1;
-	int pop0 = 1;
+	double resistance = (double)(rand() % 10000)/(double)10000; 
+	this->initialize();
+
+	/*int pop0 = 1;
 	for (int i = 0; i<pop0; i++)
 		lineage.push_back(new Bacterium(resistance, 0));
+	*/
 }
 
 Lineage::~Lineage()
 {
 
+}
+
+void Lineage::initialize()
+{
+	lineage.push_back(new Bacterium(resistance,0));
 }
 
 bool Lineage::divide()
@@ -35,14 +43,30 @@ bool Lineage::divide()
 		return false;
 
 	}*/
-	int size = lineage.size();
+
+	//deque<Bacterium*> temp;
+
+/*	for (int i=0; i < (int)lineage.size(); i++)
+	{
+		double random = (double)(rand() % 10000) / (double)1000000 - 0.005;
+		temp.insert(temp.end(), new Bacterium( random + lineage[i]->get_resistance(), i ));
+	}
+	
+	printf("temp made with %d bacterium\n", temp.size());
+*/
+		
+	int size = (int)lineage.size();
 	for (int i=0; i < size; i++)
 	{
-	//	deque<Bacterium*> temp;
-	//	temp.insert(i, new Bacterium(lineage[i]->get_resistance() + 0.01,i));
-		lineage.insert(lineage.end(), new Bacterium(lineage[i]->get_resistance() + 0.01,i));
-	
+		double random = (double)(rand() % 10000) / (double)1000000 - 0.005;
+		lineage.push_back( new Bacterium(random + lineage[i]->get_resistance(),i) );
+		printf("added bacterium %d to lineage\n", i + 1);	
 	}
+//	temp.clear();
+/*
+	for (int i=0; i < (int)lineage.size(); i++)
+		lineage.insert(lineage.end(), new Bacterium(lineage[i]->get_resistance() + 0.01,i));
+*/
 	
 	return true;
 }
@@ -69,7 +93,7 @@ bool Lineage::die(int index)
 
 void Lineage::random(int death_prob)
 {
-	int randNum = rand() % this->get_size();
+	int randNum = (rand() % (this->get_size()+1));
 	if ( debug ) printf("removing %d bacteria from lineage\n",randNum);
 	for (int i=0; i<randNum; i++)
 	{

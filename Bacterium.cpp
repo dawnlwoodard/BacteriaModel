@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Bacterium::Bacterium(int resistance, int parent)
+Bacterium::Bacterium(double resistance, int parent)
 {
 
 }
@@ -12,8 +12,12 @@ Bacterium::~Bacterium()
 
 }
 
-int Bacterium::get_resistance()
+double Bacterium::get_resistance()
 {
 	return this->resistance; 
 }
 
+int Bacterium::get_parent()
+{
+	return this->parent;
+} 

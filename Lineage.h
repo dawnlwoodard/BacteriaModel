@@ -13,10 +13,11 @@ class Lineage
 
 	private:
 		deque<Bacterium*> lineage;
-		int resistance;
+		double resistance;
 	public:
 		Lineage(int generations);
 		~Lineage();
+		void initialize();
 		bool divide();
 		bool die(int index);
 		int get_size();

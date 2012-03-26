@@ -9,10 +9,12 @@ class Bacterium
 {
 	private:
 		int resistance;
+		int parent;
 	public:
-		Bacterium(int resistance, int parent);
+		Bacterium(double resistance, int parent);
 		~Bacterium();
-		int get_resistance();
+		int get_parent();
+		double get_resistance();
 };
 
 #endif

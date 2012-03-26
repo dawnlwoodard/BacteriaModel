@@ -13,8 +13,8 @@ Plot* plot = Plot::CreateInstance();
 const double pi = 3.141592653589793;
 deque<Bacteria*> plotBac;  
 
-bool debug = false;
-bool userInput = false;
+bool debug = true;
+bool userInput = true;
 
 void quit( int sig );
 
@@ -47,7 +47,7 @@ int main()
 
 	}
 
-	for ( int i = 0; i <= maxGen ; i++ )
+/*	for ( int i = 0; i <= maxGen ; i++ )
 		plotBac.push_back( new Bacteria(pop0, i, k) );
 
 	int max = 0;
@@ -57,20 +57,19 @@ int main()
 		int pop = plotBac[i]->get_pop();
 		if ( pop > max ) max = pop;
 
-	}
+	}*/
 
+	Bacteria* bacteria = new Bacteria( pop0, maxGen, k);
+	
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,k+100);
 	
 	sprintf(command, "plot %d title \"Capacity\", '-' title \"Predicted\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
 
+	vector<int> pops;
+	bacteria->get_pop_vector( pops );
 	for ( int i = 0; i <= maxGen; i++ )
-	{
-
-		int size = plotBac[i]->get_pop();
-		sprintf(command, "%d %d", i, size); plot->write( command );
-
-	}
+		sprintf(command, "%d %d", i, pops[i]); plot->write( command );
 	plot->write("e");
 
 	vector<int> pop;
