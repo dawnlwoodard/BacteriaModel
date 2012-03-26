@@ -18,7 +18,7 @@ Plot::Plot()
 
 	gnuplot = popen("gnuplot -persist > /dev/null 2>&1","w");
 	//write("set term postscript eps color");
-	write("set title \"Bacteria Population Over Time\" fsize 24");
+	write("set title \"Bacteria Population Over Time\"");
 	write("set xlabel \"Generations\"");
 	write("set ylabel \"Population\"");
 	write("set pointsize 0.75");
