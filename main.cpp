@@ -9,13 +9,13 @@
 
 using namespace std;
 
-bool debug = true;
-bool userInput = true;
+bool debug = false;
+bool userInput = false;
 Plot* plot = Plot::CreateInstance();
 
 void quit( int sig );
 
-int main()
+int main( int argc, char* argv[] )
 {
 
 	unsigned int pop0 = 10;
@@ -27,9 +27,16 @@ int main()
 	Bacteria* bacteria;
 	vector<int> pop, pops;
 
-	// Initialize random seed.
-	srand( (unsigned)time(NULL) );
-	
+	if ( argc == 4 )
+	{
+
+		userInput = false;
+		pop0 = atoi( argv[1] );
+		gens = atoi( argv[2] );
+		cap  = atoi( argv[3] );
+
+	}
+
 	if ( userInput )
 	{
 
@@ -51,6 +58,9 @@ int main()
 
 	}
 
+	// Initialize random seed.
+	srand( (unsigned)time(NULL) );
+	
 	// Create bacteria object.
 	bacteria = new Bacteria( pop0, gens, cap);
 	
