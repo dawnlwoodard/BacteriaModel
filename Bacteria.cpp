@@ -33,7 +33,7 @@ void Bacteria::initialize(int pop0)
 
 	pops.resize(generations+1); pops[0] = pop0;
 	for (int i = 0; i < (int)pop0; i++)
-		bacteria.push_back( new Lineage(generations) );
+		bacteria.push_back( new Lineage() );
 	this->remove();
 }
 

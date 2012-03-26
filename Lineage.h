@@ -15,13 +15,14 @@ class Lineage
 		deque<Bacterium*> lineage;
 		double resistance;
 	public:
-		Lineage(int generations);
+		Lineage();
 		~Lineage();
 		void initialize();
 		bool divide();
 		bool die(int index);
 		int get_size();
 		void random(double death_prob);
+
 };
 
 #endif
