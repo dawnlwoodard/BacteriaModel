@@ -21,9 +21,9 @@ void quit( int sig );
 int main()
 {
 
-	int maxGen = 10;	
+	int maxGen = 10;
 	int pop0 = 10;
-	int k = 1000;
+	int k = 500;
 	double r = 1.0;
 
 	srand( (unsigned)time(NULL) );
@@ -64,12 +64,15 @@ int main()
 	plot->set_xrange(0,maxGen);
 	plot->set_yrange(0,k+100);
 	
-	sprintf(command, "plot %d title \"Capacity\", '-' title \"Predicted\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
+	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modelled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", k ); plot->write(command);
 
 	vector<int> pops;
 	bacteria->get_pop_vector( pops );
 	for ( int i = 0; i <= maxGen; i++ )
-		sprintf(command, "%d %d", i, pops[i]); plot->write( command );
+	{
+		sprintf(command, "%d %d", i, pops[i]);
+		plot->write( command );
+	}
 	plot->write("e");
 
 	vector<int> pop;
