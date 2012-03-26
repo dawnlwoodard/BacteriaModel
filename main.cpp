@@ -9,13 +9,13 @@
 
 using namespace std;
 
-bool debug = true;
-bool userInput = true;
+bool debug = false;
+bool userInput = false;
 Plot* plot = Plot::CreateInstance();
 
 void quit( int sig );
 
-int main()
+int main( int argc, char* argv[] )
 {
 
 	unsigned int pop0 = 10;
@@ -27,10 +27,16 @@ int main()
 	Bacteria* bacteria;
 	vector<int> pop, pops;
 
-	// Initialize random seed.
-	srand( (unsigned)time(NULL) );
+	if ( argc == 4 )
+	{
 
-	
+		userInput = false;
+		pop0 = atoi( argv[1] );
+		gens = atoi( argv[2] );
+		cap  = atoi( argv[3] );
+
+	}
+
 	if ( userInput )
 	{
 
@@ -52,13 +58,15 @@ int main()
 
 	}
 
-
+	// Initialize random seed.
+	srand( (unsigned)time(NULL) );
+	
 	// Create bacteria object.
 	bacteria = new Bacteria( pop0, gens, cap);
 	
 	// Set graphing window based on user input.
 	plot->set_xrange(0, gens);
-	plot->set_yrange(0, cap+100);
+	plot->set_yrange(0, 1.05*cap);
 	
 	// Initialize gnuplot for three simultaneous plots.
 	sprintf(command, "plot %d title \"Capacity\", '-' title \"Modeled\" with lp pt 7, '-' title \"Expected\" with lp pt 7", cap ); plot->write(command);

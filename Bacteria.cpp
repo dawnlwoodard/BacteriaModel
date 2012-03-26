@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Bacteria::Bacteria( int pop0, int generations, int k )
+Bacteria::Bacteria( unsigned int pop0, unsigned int generations, unsigned int k )
 {
 
 	this->plot = Plot::CreateInstance();

@@ -1,4 +1,5 @@
 change ints to unsigned long ints so overflow doesn't happen so soon
+<<<<<<< HEAD
 
 LOGISTIC GROWTH.
 
@@ -9,3 +10,6 @@ add capability to run multiple trials with same inputs and average
 add dormant property to bacterium (separate deque to pop and push these to?)
 
 add probability of dividing for bacterium (currently at 100%)
+=======
+for example, run program with pop0=13, gens=14, and cap=1000
+>>>>>>> 0cd430e43ffde97a5db2bbbd5c16977e5b13a06b
