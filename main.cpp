@@ -75,19 +75,14 @@ int main()
 
 	vector<int> pop;
 	pop.resize( maxGen + 1 );
-	pop[0] = pop0;
-	for ( int i = 1; i <= maxGen; i++ )
-	{
-
-		// P(n+1) = P(n) + r*P(n)*(1-P(n)/k)
-		pop[i] = pop[i-1] + r*pop[i-1]*( 1.0 - pop[i-1]/(double)k );
-
-	}
 	for ( int i = 0; i <= maxGen; i++ )
 	{
 
-		sprintf(command, "%d %d", i, pop[i]);
-		plot->write( command );
+		if ( i == 0 ) pop[0] = pop0;
+		else pop[i] = pop[i-1] + r*pop[i-1]*( 1.0 - pop[i-1]/(double)k );
+		// P(n+1) = P(n) + r*P(n)*(1-P(n)/k)
+
+		sprintf(command, "%d %d", i, pop[i]); plot->write( command );
 
 	}
 	plot->write("e");
