@@ -13,23 +13,37 @@ const double pi = 3.141592653589793;
 deque<Bacteria*> plotBac;  
 
 bool debug = false;
+bool userInput = false;
 
 void quit( int sig );
 
 int main()
 {
 
-	int maxGen;	
-	double pop0;
-	int k;
+	int maxGen = 10;	
+	int pop0 = 10;
+	int k = 2000;
 
 	srand( (unsigned)time(NULL) );
 
 	char command[128];
 
-	printf("Initial Population: ");    scanf("%lf", &pop0);
-	printf("Number of generations: "); scanf("%d",  &maxGen);	
-	printf("Carrying capacity: ");     scanf("%d",  &k);	
+	if ( userInput )
+	{
+
+		printf("Initial Population:    "); scanf("%d", &pop0);
+		printf("Number of generations: "); scanf("%d", &maxGen);
+		printf("Carrying capacity:     "); scanf("%d", &k);
+
+	}
+	else
+	{
+
+		printf("Initial Population:    %d\n", pop0);
+		printf("Number of generations: %d\n", maxGen);
+		printf("Carrying capacity:     %d\n", k);
+
+	}
 
 	for ( int i = 0; i <= maxGen ; i++ )
 		plotBac.push_back( new Bacteria(pop0, i, k) );
