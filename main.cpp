@@ -32,7 +32,7 @@ int main()
 	printf("Carrying capacity: ");     scanf("%d",  &k);	
 
 	for ( int i = 0; i <= maxGen ; i++ )
-		plotBac.push_back( new Bacteria(P0, i, k) );
+		plotBac.push_back( new Bacteria(pop0, i, k) );
 
 	int max = 0;
 	for ( int i = 0; i < (int)plotBac.size(); i++ )
