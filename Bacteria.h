@@ -23,10 +23,9 @@ class Bacteria
 		Bacteria( int pop0, int generations, int k );
 		~Bacteria();
 		int get_number();
-		bool remove( int lin, int death_prob );
 		void get_pop_vector( vector<int> &pops );
 		int get_pop();
-		void random();
+		void remove();
 		void initialize(int pop0);
 		void generate();
 		void new_generation(int gen);

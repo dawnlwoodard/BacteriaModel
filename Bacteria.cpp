@@ -26,25 +26,32 @@ Bacteria::~Bacteria()
 {
 
 }
+
+//create initial deque of pop0 lineages, kill portion of these
 void Bacteria::initialize(int pop0)
 {
 
 	pops.resize(generations+1); pops[0] = pop0;
 	for (int i = 0; i < (int)pop0; i++)
 		bacteria.push_back( new Lineage(generations) );
-	this->random();
+	this->remove();
 }
 
+
+//tell each lineage to create a new generation up through the maximum given (generations)
+//after each generation is created, kill a portion of these
 void Bacteria::generate()
 {
 
 	for (int i = 0; i < (int)generations; i++)
 	{
 		new_generation(i);
-		this->random();
+		this->remove();
 	}
 }
 
+//call each lineage within the deque and tell it to divide 
+//get the population after each generation and put it in pops so growth can be plotted over time
 void Bacteria::new_generation(int gen)
 {
 		
@@ -59,6 +66,7 @@ void Bacteria::new_generation(int gen)
 
 }
 
+//return vector of population values after each generation 
 void Bacteria::get_pop_vector( vector<int> &pops )
 {
 
@@ -66,11 +74,13 @@ void Bacteria::get_pop_vector( vector<int> &pops )
 	
 }
 
+//return total number of lineages in the deque bacteria
 int Bacteria::get_number()
 {
 	return (int)bacteria.size();
 }
 
+//return total number of bacterium in all lineages within bacteria
 int Bacteria::get_pop()
 {
 	int pop = 0;
@@ -81,33 +91,15 @@ int Bacteria::get_pop()
 	return pop;
 }
 
+//IN PROGRESS. should return bacterium death probability based on proximity to carrying capacity
 int Bacteria::get_death_prob()
 {
 	int prob = 2*this->get_pop()*(1-this->get_pop()/k);
     return prob;
 }
 
-bool Bacteria::remove( int lin, int death_prob )
-{
-
-	if ( lin < (int)bacteria.size() )
-	{
-
-		bacteria[lin]->random(death_prob);
-		return true;
-
-	}
-	else
-	{
-
-		fprintf(stderr, "Invalid bacteria index (%d)!\n", lin);
-		return false;
-
-	}
-
-}
-
-void Bacteria::random()
+//calls remove on deque bacteria 
+void Bacteria::remove()
 {
 
 	if ( debug ) printf("Removing within %d lineages\n", this->get_number());
@@ -117,17 +109,27 @@ void Bacteria::random()
 	for (int i = 0; i < this->get_number(); i++)
 	{
 		if ( debug ) printf("removing within lineage %d\n", i); 
-		this->remove(i, death_prob);
+		bacteria[i]->random(death_prob);
 	}	
 
 	//Take out lineages that have no more bacterium in them
 	int size = bacteria.size();
+	deque<int> temp;
+	
 	for (int i = 0; i < size; i++)
 	{
 		if ( debug ) printf("Size of lineage %d = %d\n", i, bacteria[i]->get_size());
-		if (bacteria[i]->get_size() == 0)
-			bacteria.erase(bacteria.begin() + i);
-		if ( debug ) printf("Number of lineages = %d\n", (int)bacteria.size());
+	
+		//add indices of empty lineages to deque temp	
+		if ( bacteria[i]->get_size() == 0 )
+			temp.push_back(i);		
 	}
+
+	//erase empty lineages from index values in temp
+	int tsize = temp.size();
+	for ( int j=0; j<tsize; j++ )
+		bacteria.erase(bacteria.begin() + temp[j]);
+		
+	if ( debug ) printf("Number of lineages = %d\n", (int)bacteria.size());
 
 }

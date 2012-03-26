@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool debug = false;
+bool debug = true;
 bool userInput = true;
 Plot* plot = Plot::CreateInstance();
 
@@ -30,8 +30,6 @@ int main()
 	// Initialize random seed.
 	srand( (unsigned)time(NULL) );
 
-	// Create bacteria object.
-	bacteria = new Bacteria( pop0, gens, cap);
 	
 	if ( userInput )
 	{
@@ -54,6 +52,10 @@ int main()
 
 	}
 
+
+	// Create bacteria object.
+	bacteria = new Bacteria( pop0, gens, cap);
+	
 	// Set graphing window based on user input.
 	plot->set_xrange(0, gens);
 	plot->set_yrange(0, cap+100);
