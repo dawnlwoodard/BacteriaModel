@@ -10,7 +10,7 @@ class Bacterium
 	private:
 		int resistance;
 	public:
-		Bacterium(int resistance);
+		Bacterium(int resistance, int parent);
 		~Bacterium();
 		int get_resistance();
 };

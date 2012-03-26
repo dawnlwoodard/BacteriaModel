@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Bacterium::Bacterium(int resistance)
+Bacterium::Bacterium(int resistance, int parent)
 {
 
 }
