@@ -18,8 +18,8 @@ Bacteria::Bacteria( int pop0, int generations, int k )
 		for (int j = 0; j < (int)bacteria.size(); j++)
 			bacteria[j]->divide();
 	this->random();
-	printf("Number of lineages: %d\n", get_number());
-	printf("Population size: %d\n", get_pop());
+	if ( debug ) printf("Number of lineages: %d\n", get_number());
+	if ( debug ) printf("Population size: %d\n", get_pop());
 }
 
 Bacteria::~Bacteria()
@@ -70,12 +70,12 @@ bool Bacteria::remove( int lin, int death_prob )
 
 void Bacteria::random()
 {
-	printf("Removing within %d lineages\n", this->get_number());
+	if ( debug ) printf("Removing within %d lineages\n", this->get_number());
 	int death_prob = this->get_death_prob();
 
 	for (int i = 0; i < this->get_number(); i++)
 	{
-		printf("removing within lineage %d\n", i); 
+		if ( debug ) printf("removing within lineage %d\n", i); 
 		this->remove(i, death_prob);
 	}
 }

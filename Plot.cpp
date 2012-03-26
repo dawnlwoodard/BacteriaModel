@@ -23,8 +23,6 @@ Plot::Plot()
 	write("set ylabel \"Population\"");
 	write("set pointsize 0.75");
 	write("set key off");
-	set_xrange(0,100);
-	set_yrange(0,100);
 
 }
 
