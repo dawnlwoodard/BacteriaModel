@@ -16,11 +16,11 @@ class Bacteria
 		Plot* plot;
 		deque<Lineage*> bacteria;
 		vector<int> pops;
-		int generations;
-		int k;
+		unsigned int generations;
+		unsigned int k;
 
 	public:
-		Bacteria( int pop0, int generations, int k );
+		Bacteria( unsigned int pop0, unsigned int generations, unsigned int k );
 		~Bacteria();
 		int get_number();
 		void get_pop_vector( vector<int> &pops );
