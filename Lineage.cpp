@@ -9,6 +9,7 @@ using namespace std;
 Lineage::Lineage()
 {
 
+	//generate random resistance level from 0 to 0.99
 	this->resistance = (double)(rand() % 10000)/(double)10000;
 	this->initialize();
 
@@ -21,6 +22,7 @@ Lineage::~Lineage()
 
 }
 
+//add initial bacterium to lineage with random resistance level
 void Lineage::initialize()
 {
 
@@ -28,10 +30,11 @@ void Lineage::initialize()
 
 }
 
+//add one new Bacterium to the lineage for each one for which randNum <= birthProb
 bool Lineage::divide(double birthProb)
 {
-	//int randBirth = birthProb*(double)(rand() % (this->get_size()+1));
-	
+
+	//int randBirth = birthProb*(double)(rand() % (this->get_size()+1));	
 
 	int size = (int)lineage.size();
 	for ( int i = 0; i < size; i++ )
@@ -45,7 +48,6 @@ bool Lineage::divide(double birthProb)
 
 	}
 
-
 /*	for ( int i = 0; i < randBirth; i++ )
 	{
 
@@ -56,12 +58,13 @@ bool Lineage::divide(double birthProb)
 		lineage.push_back( new Bacterium(randResist + lineage[i]->get_resistance(), i) );
 		
 
-	}
-*/	
+	}*/
+
 	return true;
 
 }
 
+//erases Bacterium from lineage at the given index
 bool Lineage::die(int index)
 {
 
@@ -100,6 +103,7 @@ void Lineage::random(double death_prob)
 
 }
 
+//returns length of lineage
 int Lineage::get_size()
 {
 
