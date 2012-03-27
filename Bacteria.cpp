@@ -48,7 +48,7 @@ void Bacteria::generate()
 	for (int i = 0; i < (int)generations; i++)
 	{
 
-		new_generation(i);
+		reproduce(i);
 		this->remove();
 
 	}
@@ -57,14 +57,14 @@ void Bacteria::generate()
 
 //call each lineage within the deque and tell it to divide 
 //get the population after each generation and put it in pops so growth can be plotted over time
-void Bacteria::new_generation(int gen)
+void Bacteria::reproduce(int gen)
 {
-		
+	double birthProb = 1 - (double)this->get_pop()/(double)this->cap;
 	for (int j = 0; j < (int)bacteria.size(); j++)
 	{
 
 		if (debug) printf("Dividing in lineage %d\n",j);
-		bacteria[j]->divide();
+		bacteria[j]->divide(birthProb);
 
 		pops[gen+1] = get_pop();
 		if ( debug ) printf("Population = %d\n", get_pop());

@@ -29,7 +29,7 @@ class Bacteria
 		void remove();
 		void initialize(int pop0);
 		void generate();
-		void new_generation(int gen);
+		void reproduce(int gen);
 
 };
 #endif

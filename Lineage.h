@@ -18,7 +18,7 @@ class Lineage
 		Lineage();
 		~Lineage();
 		void initialize();
-		bool divide();
+		bool divide(double birthProb);
 		bool die(int index);
 		int get_size();
 		void random(double death_prob);

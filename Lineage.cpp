@@ -28,19 +28,36 @@ void Lineage::initialize()
 
 }
 
-bool Lineage::divide()
+bool Lineage::divide(double birthProb)
 {
+	//int randBirth = birthProb*(double)(rand() % (this->get_size()+1));
 	
+
 	int size = (int)lineage.size();
 	for ( int i = 0; i < size; i++ )
 	{
 
 		double randResist = (double)(rand() % 10000) / 1000000.0 - 0.005;
-		lineage.push_back( new Bacterium(randResist + lineage[i]->get_resistance(), i) );
+		double randNum = (double)(rand() % 100) / 100.0;
+		if (randNum <= birthProb)
+			lineage.push_back( new Bacterium(randResist + lineage[i]->get_resistance(), i) );
 		if ( debug ) printf("dividing bacterium %d\n", i);
 
 	}
-	
+
+
+/*	for ( int i = 0; i < randBirth; i++ )
+	{
+
+		int randBac = ( this->get_size() ) ? rand() % this->get_size() : 0;
+		if ( !randBac ) continue;
+			
+		double randResist = (double)(rand() % 10000) / 1000000.0 - 0.005;
+		lineage.push_back( new Bacterium(randResist + lineage[i]->get_resistance(), i) );
+		
+
+	}
+*/	
 	return true;
 
 }
