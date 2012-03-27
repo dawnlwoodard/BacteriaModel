@@ -90,17 +90,28 @@ void Lineage::random(double death_prob)
 {
 
 	if ( debug ) printf("death_prob: %f\n", death_prob);
-	int randNum = death_prob*(double)(rand() % (this->get_size()+1));
-	if ( debug ) printf("removing %d bacteria from lineage\n",randNum);
-	for ( int i = 0; i < randNum; i++ )
+	//double randDeath = death_prob*(double)(rand() % (this->get_size()+1));
+	//printf("randDeath = %f\n",randDeath);
+
+	//if ( debug ) printf("removing %d bacteria from lineage\n",randNum);
+/*	for ( int i = 0; i < randNum; i++ )
 	{
 
 		int randBac = ( this->get_size() ) ? rand() % this->get_size() : 0;
 		if ( !randBac ) continue;
 		this->die(randBac);
 
-	}
+	}*/
+		
+	for (int i = 0; i < this->get_size(); i++)
+	{
+		
+	    double randNum = (double)(rand() % 100) / 100.0;
+	//	printf("randNum = %f\n", randNum);
+		if (randNum <= death_prob)
+			this->die(i);
 
+	}
 }
 
 //returns length of lineage
