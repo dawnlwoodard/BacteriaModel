@@ -18,8 +18,8 @@ void quit( int sig );
 int main( int argc, char* argv[] )
 {
 
-	unsigned int pop0 = 10;
-	unsigned int gens = 25;
+	unsigned int pop0 = 450;
+	unsigned int gens = 100;
 	unsigned int cap  = 500;
 	double rate = 1.0;
 	char command[128];
@@ -73,6 +73,7 @@ int main( int argc, char* argv[] )
 
 	// Send model data to gnuplot.
 	bacteria->get_pop_vector( pops );
+	//printf("Population = %d", bacteria->get_pop_vector( pops ));
 	for ( unsigned int i = 0; i <= gens; i++ )
 	{
 

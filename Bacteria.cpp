@@ -50,7 +50,8 @@ void Bacteria::generate()
 
 		reproduce(i);
 		this->remove();
-
+		//bacteria[i]->add_babies();
+		
 	}
 
 }
@@ -59,7 +60,8 @@ void Bacteria::generate()
 //get the population after each generation and put it in pops so growth can be plotted over time
 void Bacteria::reproduce(int gen)
 {
-	double birthProb = 1 - (double)this->get_pop()/(double)this->cap;
+	double birthProb = 1*.5;//1 - (double)this->get_pop()/(double)this->cap;
+	printf("birth probability = %f\n", birthProb);
 	for (int j = 0; j < (int)bacteria.size(); j++)
 	{
 
@@ -67,6 +69,7 @@ void Bacteria::reproduce(int gen)
 		bacteria[j]->divide(birthProb);
 
 		pops[gen+1] = get_pop();
+		printf("Population = %d\n", pops[gen + 1]);
 		if ( debug ) printf("Population = %d\n", get_pop());
 
 	}			
@@ -77,8 +80,7 @@ void Bacteria::reproduce(int gen)
 void Bacteria::get_pop_vector( vector<int> &pops )
 {
 
-	pops = this->pops;
-	
+	pops = this->pops;		
 }
 
 //return total number of lineages in the deque bacteria
@@ -107,8 +109,8 @@ void Bacteria::remove()
 {
 
 	if ( debug ) printf("Removing within %d lineages\n", this->get_number());
-	double death_prob = (double)this->get_pop()/(double)this->cap;
-
+	double death_prob = (1*(double)this->get_pop())/(double)(this->cap + this->get_pop());
+	printf("death probability = %f\n", death_prob);
 	//Tell every lineage to randomly erase bacteria
 	for (int i = 0; i < this->get_number(); i++)
 	{

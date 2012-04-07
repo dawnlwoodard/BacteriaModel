@@ -36,18 +36,20 @@ bool Lineage::divide(double birthProb)
 
 	//int randBirth = birthProb*(double)(rand() % (this->get_size()+1));	
 
+	new_babies.clear();
 	int size = (int)lineage.size();
 	for ( int i = 0; i < size; i++ )
 	{
-
 		double randResist = (double)(rand() % 10000) / 1000000.0 - 0.005;
 		double randNum = (double)(rand() % 100) / 100.0;
+		printf("birth randNum = %f", randNum);
 		if (randNum <= birthProb)
 			lineage.push_back( new Bacterium(randResist + lineage[i]->get_resistance(), i) );
+		
 		if ( debug ) printf("dividing bacterium %d\n", i);
 
 	}
-
+	
 /*	for ( int i = 0; i < randBirth; i++ )
 	{
 
@@ -61,6 +63,13 @@ bool Lineage::divide(double birthProb)
 	}*/
 
 	return true;
+
+}
+
+void Lineage::add_babies()
+{
+	for ( int j = 0; j < (int)old_babies.size(); j++)
+		lineage.push_back( old_babies[j] );
 
 }
 
@@ -107,11 +116,13 @@ void Lineage::random(double death_prob)
 	{
 		
 	    double randNum = (double)(rand() % 100) / 100.0;
+		printf("death randNum = %f\n", randNum);
 	//	printf("randNum = %f\n", randNum);
 		if (randNum <= death_prob)
 			this->die(i);
 
 	}
+//	old_babies = new_babies;
 }
 
 //returns length of lineage
