@@ -18,14 +18,15 @@ void quit( int sig );
 int main( int argc, char* argv[] )
 {
 
-	unsigned int pop0 = 450;
-	unsigned int gens = 100;
-	unsigned int cap  = 500;
+	unsigned int pop0 = 50;
+	unsigned int gens = 15;
+	unsigned int cap  = 100;
 	double rate = 1.0;
 	char command[128];
 
 	Bacteria* bacteria;
 	vector<int> pop, pops;
+	vector<int> deaths;
 
 	if ( argc == 4 )
 	{
@@ -42,7 +43,6 @@ int main( int argc, char* argv[] )
 
 		// Set pop0, gens, and cap to invalid values;
 		pop0 = gens = cap = 0;
-
 		// Wait for user to input valid values for pop0, gens, and cap.
 		while ( pop0 == 0 ) { printf("Initial Population:    "); scanf("%d", &pop0); }
 		while ( gens == 0 ) { printf("Number of Generations: "); scanf("%d", &gens); }
@@ -63,7 +63,7 @@ int main( int argc, char* argv[] )
 	
 	// Create bacteria object.
 	bacteria = new Bacteria( pop0, gens, cap);
-	
+
 	// Set graphing window based on user input.
 	plot->set_xrange(0, gens);
 	plot->set_yrange(0, 1.1*cap);
@@ -73,12 +73,9 @@ int main( int argc, char* argv[] )
 
 	// Send model data to gnuplot.
 	bacteria->get_pop_vector( pops );
-	//printf("Population = %d", bacteria->get_pop_vector( pops ));
 	for ( unsigned int i = 0; i <= gens; i++ )
 	{
-
 		sprintf(command, "%d %d", i, pops[i]); plot->write( command );
-
 	}
 	plot->write("e");
 
