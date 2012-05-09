@@ -18,9 +18,9 @@ void quit( int sig );
 int main( int argc, char* argv[] )
 {
 
-	unsigned int pop0 = 50;
-	unsigned int gens = 15;
-	unsigned int cap  = 100;
+	unsigned int pop0 = 10;
+	unsigned int gens = 100;
+	unsigned int cap  = 250;
 	double rate = 1.0;
 	char command[128];
 
