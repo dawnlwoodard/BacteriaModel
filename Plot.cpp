@@ -53,6 +53,15 @@ void Plot::set_yrange( double min, double max )
 
 }
 
+void Plot::set_title( const char* title )
+{
+
+	char command[128];
+	sprintf(command, "set title \"%s\"", title);
+	write( command );
+
+}
+
 void Plot::write( const char* command )
 {
 
