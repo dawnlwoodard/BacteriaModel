@@ -3,9 +3,13 @@ CXXFLAGS=-g -lm -Wall
 PROJECT=BacteriaModel
 OBJECTS=main.o Plot.o Bacteria.o Lineage.o Bacterium.o
 HEADERS=globals.h
+DIRECTORIES=screenshots
 
-all: $(OBJECTS)
+all: dirs $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(PROJECT)
+
+dirs:
+	mkdir -p $(DIRECTORIES)
 
 main.o: $(HEADERS) main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
@@ -23,4 +27,4 @@ Bacterium.o: $(HEADERS) Bacterium.cpp Bacterium.h
 	$(CXX) $(CXXFLAGS) -c Bacterium.cpp -o Bacterium.o
 
 clean:
-	rm *.o $(PROJECT)
+	rm -rf *.o $(PROJECT) $(DIRECTORIES)
