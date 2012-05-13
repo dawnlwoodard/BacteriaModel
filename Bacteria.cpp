@@ -70,7 +70,7 @@ void Bacteria::reproduce(int gen)
 }
 
 //return vector of population values after each generation 
-void Bacteria::get_pop_vector( vector<int> &pops )
+void Bacteria::get_pop_vector( vector<unsigned int> &pops )
 {
 
 	pops = this->pops;		
