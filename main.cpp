@@ -13,23 +13,25 @@ bool debug = false;
 bool userInput = false;
 Plot* plot = Plot::CreateInstance();
 
+char command[128], title[128], savefile[128];
+vector<unsigned> pop, pops;
+
+unsigned pop0 = 10;
+unsigned gens = 100;
+unsigned cap  = 250;
+double rate   = 1.0;
+
+unsigned minimum = 0;
+unsigned maximum = 0;
+
+void init_plot();
+void send_data();
 void quit( int sig );
 
 int main( int argc, char* argv[] )
 {
 
-	unsigned int pop0 = 10;
-	unsigned int gens = 100;
-	unsigned int cap  = 250;
-
-	unsigned int min  = 0;
-	unsigned int max  = 0;
-
-	double rate = 1.0;
-	char command[128];
-
 	Bacteria* bacteria;
-	vector<unsigned int> pop, pops;
 
 	if ( argc == 4 )
 	{
@@ -46,6 +48,7 @@ int main( int argc, char* argv[] )
 
 		// Set pop0, gens, and cap to invalid values;
 		pop0 = gens = cap = 0;
+
 		// Wait for user to input valid values for pop0, gens, and cap.
 		while ( pop0 == 0 ) { printf("Initial Population:    "); scanf("%d", &pop0); }
 		while ( gens == 0 ) { printf("Number of Generations: "); scanf("%d", &gens); }
@@ -64,13 +67,6 @@ int main( int argc, char* argv[] )
 	// Initialize random seed.
 	srand( (unsigned)time(NULL) );
 
-	// UNCOMMENT FOR SCREENSHOTS (WILL UPDATE THIS LATER)
-    //plot->write("set term png enhanced color");
-	//char savefile[128];
-	//sprintf(savefile, "screenshots/plot-%d-%d-%d.png", pop0, gens, cap);
-	//sprintf(command,  "set out '%s'", savefile);
-    //plot->write( command );
-
 	// Create bacteria object.
 	bacteria = new Bacteria( pop0, gens, cap);
 
@@ -78,23 +74,53 @@ int main( int argc, char* argv[] )
 	bacteria->get_pop_vector( pops );
 
 	// Determine largest population in vector.
-	for ( unsigned int i = 0; i <= gens; i++ )
-		if ( pops[i] > max ) max = pops[i];
-	if ( cap > max ) max = cap;
+	for ( unsigned i = 0; i <= gens; i++ )
+		if ( pops[i] > maximum ) maximum = pops[i];
+	if ( cap > maximum ) maximum = cap;
+
+	// Initialize plot.
+	init_plot();
+
+	// Wait for CTRL-C signal.
+	while (true) signal(2, &quit);
+
+	return 0;
+
+}
+
+void init_plot()
+{
 
 	// Set graphing window based on calculated ranges.
 	plot->set_xrange(0, gens);
-	plot->set_yrange(min, 1.01*max);
+	plot->set_yrange(minimum, 1.01*maximum);
 
 	// Set appropriate title for graph window.
-	sprintf(command, "Bacteria Population (P0=%d, G=%d, K=%d)", pop0, gens, cap);
-	plot->set_title( command );
+	sprintf(title, "Bacteria Population (P0=%d, G=%d, K=%d)", pop0, gens, cap);
+	plot->set_title( title );
 
 	// Initialize gnuplot for three simultaneous plots.
 	sprintf(command, "plot %d title '%s', '-' title '%s' with lp pt 7, '-' title '%s' with lp pt 7", cap, "Capacity", "Modeled", "Expected" ); plot->write(command);
 
+	// Send data to gnuplot.
+	send_data();
+
+	// Save a screenshot of the current instance.
+	sprintf(savefile, "screenshots/plot-%d-%d-%d.png", pop0, gens, cap);
+	plot->write("set term png enhanced");
+	sprintf(command,  "set out '%s'", savefile);
+	plot->write( command );
+	plot->refresh();
+	send_data();
+	plot->write("set term x11");
+
+}
+
+void send_data()
+{
+
 	// Send model data to gnuplot.
-	for ( unsigned int i = 0; i <= gens; i++ )
+	for ( unsigned i = 0; i <= gens; i++ )
 	{
 
 		sprintf(command, "%d %d", i, pops[i]);
@@ -105,7 +131,7 @@ int main( int argc, char* argv[] )
 
 	// Send expected data to gnuplot.
 	pop.resize( gens + 1 );
-	for ( unsigned int i = 0; i <= gens; i++ )
+	for ( unsigned i = 0; i <= gens; i++ )
 	{
 
 		// P(n+1) = P(n) + r*P(n)*(1-P(n)/k)
@@ -115,10 +141,6 @@ int main( int argc, char* argv[] )
 
 	}
 	plot->write("e");
-
-	while (true) signal(2, &quit);
-
-	return 0;
 
 }
 

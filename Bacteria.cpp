@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Bacteria::Bacteria( unsigned int pop0, unsigned int generations, unsigned int cap )
+Bacteria::Bacteria( unsigned pop0, unsigned generations, unsigned cap )
 {
 
 	this->plot = Plot::CreateInstance();
@@ -26,11 +26,11 @@ Bacteria::~Bacteria()
 }
 
 //create initial deque of pop0 lineages, kill portion of these
-void Bacteria::initialize(int pop0)
+void Bacteria::initialize(unsigned pop0)
 {
 
 	pops.resize(generations+1); pops[0] = pop0;
-	for ( int i = 0; i < pop0; i++ )
+	for ( unsigned i = 0; i < pop0; i++ )
 		bacteria.push_back( new Lineage() );
 	this->remove();
 
@@ -41,12 +41,12 @@ void Bacteria::initialize(int pop0)
 void Bacteria::generate()
 {
 
-	for (int j = 0; j < (int)generations; j++)
+	for (unsigned j = 0; j < (unsigned)generations; j++)
 	{
 
 		reproduce(j);
 		this->remove();
-		for (int i = 0; i < (int)bacteria.size(); i++)
+		for (unsigned i = 0; i < (unsigned)bacteria.size(); i++)
 			bacteria[i]->add_babies();
 
 	}
@@ -55,11 +55,11 @@ void Bacteria::generate()
 
 //call each lineage within the deque and tell it to divide 
 //get the population after each generation and put it in pops so growth can be plotted over time
-void Bacteria::reproduce(int gen)
+void Bacteria::reproduce(unsigned gen)
 {
 	
 	birthProb = 0.5;//1 - (double)this->get_pop()/(double)this->cap;
-	for (int j = 0; j < (int)bacteria.size(); j++)
+	for (unsigned j = 0; j < (unsigned)bacteria.size(); j++)
 	{
 
 		bacteria[j]->divide(birthProb);
@@ -70,7 +70,7 @@ void Bacteria::reproduce(int gen)
 }
 
 //return vector of population values after each generation 
-void Bacteria::get_pop_vector( vector<unsigned int> &pops )
+void Bacteria::get_pop_vector( vector<unsigned> &pops )
 {
 
 	pops = this->pops;		
@@ -78,18 +78,18 @@ void Bacteria::get_pop_vector( vector<unsigned int> &pops )
 }
 
 //return total number of lineages in the deque bacteria
-int Bacteria::get_number()
+unsigned Bacteria::get_number()
 {
 
-	return (int)bacteria.size();
+	return (unsigned)bacteria.size();
 
 }
 
 //return total number of bacterium in all lineages within bacteria
-int Bacteria::get_pop()
+unsigned Bacteria::get_pop()
 {
 
-	int pop = 0;
+	unsigned pop = 0;
 	for ( iter = bacteria.begin(); iter != bacteria.end(); ++iter )
 		pop += (*iter)->get_pop_size();
 	return pop;

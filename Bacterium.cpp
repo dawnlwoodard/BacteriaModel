@@ -22,13 +22,6 @@ double Bacterium::get_resistance()
 
 }
 
-int Bacterium::get_parent()
-{
-
-	return this->parent;
-
-} 
-
 bool Bacterium::is_baby()
 {
 

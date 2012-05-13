@@ -18,23 +18,23 @@ class Bacteria
 		Plot* plot;
 		deque<Lineage*> bacteria;
 		deque<Lineage*>::iterator iter;
-		vector<unsigned int> pops, deathRates;
-		unsigned int generations;
-		unsigned int cap;
+		vector<unsigned> pops, deathRates;
+		unsigned generations;
+		unsigned cap;
 		double birthProb;
 		double deathProb;
 
 	public:
-		Bacteria( unsigned int pop0, unsigned int generations, unsigned int cap );
+		Bacteria( unsigned pop0, unsigned generations, unsigned cap );
 		~Bacteria();
-		int get_number();
-		void get_pop_vector( vector<unsigned int> &pops );
-		void get_death_vector (vector<int> &deaths );
-		int get_pop();
+		unsigned get_number();
+		void get_pop_vector( vector<unsigned> &pops );
+		void get_death_vector (vector<unsigned> &deaths );
+		unsigned get_pop();
 		void remove();
-		void initialize(int pop0);
+		void initialize(unsigned pop0);
 		void generate();
-		void reproduce(int gen);
+		void reproduce(unsigned gen);
 		bool operator() (Lineage* l)
 		{
 

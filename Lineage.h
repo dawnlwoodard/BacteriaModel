@@ -25,9 +25,9 @@ class Lineage
 		~Lineage();
 		void divide(double birthProb);
 		void add_babies();
-		int get_size();
-		int get_pop_size();
-		vector<int> get_deaths();
+		unsigned get_size();
+		unsigned get_pop_size();
+		vector<unsigned> get_deaths();
 		void random(double death_prob);
 		bool operator() (Bacterium* b)
 		{

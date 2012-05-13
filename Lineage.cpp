@@ -26,8 +26,6 @@ Lineage::~Lineage()
 void Lineage::divide(double birthProb)
 {
 
-	//int randBirth = birthProb*(double)(rand() % (this->get_size()+1));	
-
 	for ( iter = lineage.begin(); iter != lineage.end(); ++iter )
 	{
 
@@ -57,17 +55,17 @@ void Lineage::random(double deathProb)
 }
 
 //returns length of lineage
-int Lineage::get_size()
+unsigned Lineage::get_size()
 {
 
-	return (int)lineage.size();
+	return (unsigned)lineage.size();
 
 }
 
 //returns size of population
-int Lineage::get_pop_size()
+unsigned Lineage::get_pop_size()
 {
 
-	return (int)lineage.size();
+	return (unsigned)lineage.size();
 
 }

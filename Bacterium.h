@@ -9,8 +9,7 @@ class Bacterium
 {
 
 	private:
-		int resistance;
-		int parent;
+		double resistance;
 		bool baby_status;
 
 	public:
@@ -18,7 +17,6 @@ class Bacterium
 		~Bacterium();
 		bool is_baby();
 		void set_baby( bool baby_status );
-		int get_parent();
 		double get_resistance();
 
 };
