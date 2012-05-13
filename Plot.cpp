@@ -17,8 +17,7 @@ Plot::Plot()
 {
 
 	gnuplot = popen("gnuplot -persist > /dev/null 2>&1","w");
-	//write("set term postscript eps color");
-	write("set title \"Bacteria Population Over Time\"");
+	write("set title \"Bacteria Population\"");
 	write("set xlabel \"Generations\"");
 	write("set ylabel \"Population\"");
 	write("set pointsize 0.75");
@@ -38,7 +37,6 @@ Plot::~Plot()
 void Plot::set_xrange( double min, double max )
 {
 
-	char command[128];
 	sprintf(command, "set xrange[%f:%f]",min,max);
 	write( command );
 
@@ -47,7 +45,6 @@ void Plot::set_xrange( double min, double max )
 void Plot::set_yrange( double min, double max )
 {
 
-	char command[128];
 	sprintf(command, "set yrange[%f:%f]",min,max);
 	write( command );
 
@@ -56,7 +53,6 @@ void Plot::set_yrange( double min, double max )
 void Plot::set_title( const char* title )
 {
 
-	char command[128];
 	sprintf(command, "set title \"%s\"", title);
 	write( command );
 

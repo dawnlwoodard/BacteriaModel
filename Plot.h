@@ -16,6 +16,7 @@ class Plot
         void operator=(Plot const&){};
         static Plot* pInstance;
 		FILE* gnuplot;
+		char command[128];
 
 	public:
 		~Plot();
